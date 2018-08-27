@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" href="/css/entrega1.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		<title>Entrega 1</title>
+	</head>
+	<body>
+		<div class="">
+			<table>
+				<td>
+					<button type="button" class="btn btn-secondary">Nuevo</button>
+					<button type="button" class="btn btn-secondary">Cargar</button>
+				</td>
+				<td>
+					<button type="button" class="btn btn-primary"></button>
+					<button type="button" class="btn btn-success"></button>
+					<button type="button" class="btn btn-danger"></button>
+					<button type="button" class="btn btn-warning"></button>
+					<button type="button" class="btn btn-info"></button>
+					<button type="button" class="btn btn-dark"></button>
+				</td>
+			</table>
+		</div>
+		<div class="">
+			<canvas id="canvas" width="1000" height="1000" onmousemove="trazo(event);" onmousedown="activo;" onmouseup="inactivo;" style="border: #000000 solid 1px"/>
+		</div>
+	</body>
+	<script>
+	var color = "#000000";
+	var grosor = 10;
+	var pintar = false;
+
+	function trazo(event){
+		var canvas = document.getElementById("canvas");
+		var ctx = canvas.getContext("2d");
+		var x = event.clientX;
+		var y = event.clientY;
+		if (pintar){
+			ctx.fillStyle = color;
+			ctx.fillRect (x,y,grosor,grosor);
+		}
+	}
+
+	function activo(event){
+		pintar = true;
+	}
+
+	function inactivo(event){
+		pintar = false;
+	}
+	</script>
+</html>

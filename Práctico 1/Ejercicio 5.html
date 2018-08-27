@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Ejercicio 5</title>
+	</head>
+	<body>
+		<canvas id="canvas" width="900" height="600"/>
+	</body>
+	<script>
+		var c = document.getElementById("canvas");
+    var ctx = c.getContext("2d");
+    var width = 255;
+    var height = 255;
+
+    var image1 = new Image ();
+    image1.src = 'imagen1.jpg';
+    image1.onload = function(){
+      myDrawImageMethod(this);
+			c.addEventListener("click",function(){
+				var imageData = ctx.getImageData (0,0,image1.width,image1.height);
+				aplicarFiltro (imageData);
+			});
+    }
+
+		// function aplicarFiltro(img){ //así invierto colores
+		// 	for(i=0; i < img.data.length; i+=4){
+		// 			img.data[i] = 255 - img.data[i];
+		// 			img.data[i+1] = 255 - img.data[i+1];
+		// 			img.data[i+2] = 255 - img.data[i+2];
+		// 	}
+		// 	ctx.putImageData(img, 0, 0);
+		// }
+
+		function aplicarFiltro(img){
+			for(i=0; i < img.data.length; i+=4){
+				var color = (img.data[i] + img.data[i+1] + img.data[i+2])/3;
+					img.data[i] = color;
+					img.data[i+1] = color;
+					img.data[i+2] = color;
+			}
+			ctx.putImageData(img, 0, 0);
+		}
+
+    function myDrawImageMethod(image){
+      ctx.drawImage(image,0,0);
+    }
+
+	</script>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Ejercicio 3</title>
+	</head>
+	<body>
+		<canvas id="canvas" width="900" height="600"/>
+	</body>
+	<script>
+		var c = document.getElementById("canvas")
+    var ctx = c.getContext("2d");
+    var width = 1055;
+    var height = 1055;
+		var color = 0;
+		var imageData = ctx.createImageData(width, height);
+    for (x = 0; x < width; x++){
+      for (y = 0; y < height; y++){
+        color = ((y/height)*255);
+        SetPixel(imageData, x, y, color,color,color,255);
+      }
+    }
+    ctx.putImageData(imageData, 0, 0);
+
+    function SetPixel(imageData, x, y, r, g, b,a){
+      index = (x + y * imageData.width) * 4;
+      imageData.data[index+0] = r;
+      imageData.data[index+1] = g;
+      imageData.data[index+2] = b;
+      imageData.data[index+3] = a;
+    }
+	</script>
+</html>
