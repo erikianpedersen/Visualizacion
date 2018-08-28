@@ -11,43 +11,55 @@
 				<td>
 					<button type="button" class="btn btn-secondary">Nuevo</button>
 					<button type="button" class="btn btn-secondary">Cargar</button>
+					<button type="button" id="#000000" class="btn color btn-secondary">Lapiz</button>
+					<button type="button" id="#ffffff" class="btn color btn-secondary">Borrar</button>
 				</td>
 				<td>
-					<button type="button" class="btn btn-primary"></button>
-					<button type="button" class="btn btn-success"></button>
-					<button type="button" class="btn btn-danger"></button>
-					<button type="button" class="btn btn-warning"></button>
-					<button type="button" class="btn btn-info"></button>
-					<button type="button" class="btn btn-dark"></button>
+					<button type="button" id="#007bff" class="btn color btn-primary"></button>
+					<button type="button" id="#28a745" class="btn color btn-success"></button>
+					<button type="button" id="#dc3545" class="btn color btn-danger"></button>
+					<button type="button" id="#ffc107" class="btn color btn-warning"></button>
+					<button type="button" id="#17a2b8" class="btn color btn-info"></button>
+					<button type="button" id="#343a40" class="btn color btn-dark"></button>
 				</td>
 			</table>
 		</div>
 		<div class="">
-			<canvas id="canvas" width="1000" height="1000" onmousemove="trazo(event);" onmousedown="activo;" onmouseup="inactivo;" style="border: #000000 solid 1px"/>
+			<canvas id="canvas" width="500" height="500" style="border: #000000 solid 1px"/>
 		</div>
+		<script>
+			var color = "#000000";
+			var grosor = 10;
+			var pintar = false;
+
+			var canvas = document.getElementById("canvas");
+			var ctx = canvas.getContext("2d");
+
+			canvas.addEventListener("mousedown", function(){
+				pintar = true;
+			});
+
+			canvas.addEventListener("mouseup", function(){
+				pintar = false;
+			});
+
+			canvas.addEventListener("mousemove", function(event){
+				var x = event.clientX-5;
+				var y = event.clientY-40;
+				if (pintar){
+					ctx.fillStyle = color;
+					ctx.fillRect (x,y,grosor,grosor);
+				}
+			});
+
+			var colores = document.getElementsByClassName("color");
+			for(i = 0; i < colores.length; i++){
+				colores[i].addEventListener("click", function(){
+					color = this.id;
+				});
+			}
+
+		</script>
 	</body>
-	<script>
-	var color = "#000000";
-	var grosor = 10;
-	var pintar = false;
 
-	function trazo(event){
-		var canvas = document.getElementById("canvas");
-		var ctx = canvas.getContext("2d");
-		var x = event.clientX;
-		var y = event.clientY;
-		if (pintar){
-			ctx.fillStyle = color;
-			ctx.fillRect (x,y,grosor,grosor);
-		}
-	}
-
-	function activo(event){
-		pintar = true;
-	}
-
-	function inactivo(event){
-		pintar = false;
-	}
-	</script>
 </html>
