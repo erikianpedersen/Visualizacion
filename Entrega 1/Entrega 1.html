@@ -5,12 +5,15 @@
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" href="/css/entrega1.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 		<title>Entrega 1</title>
 	</head>
+
 	<body>
 		<div class="">
 			<table>
 				<td>
-					<button type="button" class="btn btn-secondary">Nuevo</button>
-					<input type="file" class="btn btn-secondary"></button>
+					<button type="button" id="limpiar" class="btn btn-secondary">Nuevo</button>
+					<!-- <input type="file" id="i_file" class="btn btn-secondary"></button> -->
+					<button type="button" id="loadImg" class="btn btn-secondary">Cargar</button>
+					<button type="button" id="guardar" class="btn btn-secondary">Guardar</button>
 					<button type="button" id="#000000" class="btn  btn-secondary">Lapiz</button>
 					<button type="button" id="#ffffff" class="btn color btn-secondary">Borrar</button>
 				</td>
@@ -22,44 +25,19 @@
 					<button type="button" id="#17a2b8" class="btn color btn-info"></button>
 					<button type="button" id="#343a40" class="btn color btn-dark"></button>
 				</td>
+				<td>
+					<button type="button" id="grises" class="btn btn-secondary">Grises</button>
+					<button type="button" id="negativo" class="btn btn-secondary">Negativo</button>
+					<button type="button" id="binarizacion" class="btn btn-secondary">Binarizacion</button>
+					<button type="button" id="sepia" class="btn btn-secondary">Sepia</button>
+					<button type="button" id="brillo" class="btn btn-secondary">Brillo</button>
+				</td>
 			</table>
 		</div>
 		<div class="">
 			<canvas id="canvas" width="500" height="500" style="border: #000000 solid 1px"/>
 		</div>
-		<script>
-			var color = "#000000";
-			var grosor = 10;
-			var pintar = false;
-
-			var canvas = document.getElementById("canvas");
-			var ctx = canvas.getContext("2d");
-
-			canvas.addEventListener("mousedown", function(){
-				pintar = true;
-			});
-
-			canvas.addEventListener("mouseup", function(){
-				pintar = false;
-			});
-
-			canvas.addEventListener("mousemove", function(event){
-				var x = event.clientX-5;
-				var y = event.clientY-40;
-				if (pintar){
-					ctx.fillStyle = color;
-					ctx.fillRect (x,y,grosor,grosor);
-				}
-			});
-
-			var colores = document.getElementsByClassName("color");
-			for(i = 0; i < colores.length; i++){
-				colores[i].addEventListener("click", function(){
-					color = this.id;
-				});
-			}
-
+		<script src="js/Entrega1.js">
 		</script>
 	</body>
-
 </html>
