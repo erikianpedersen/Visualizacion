@@ -1,17 +1,22 @@
 var color = "#000000";
-var grosor = 10;
+var grosor = 1;
 var pintar = false;
 
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
-var imageData = ctx.createImageData(500, 500);
+var imageData = ctx.createImageData(1000, 700);
 
-document.getElementById("loadImg").addEventListener("click", loadImg);
+var lastX = -1;
+var lastY = -1;
+
+document.getElementById("i_file").addEventListener("click", loadImg);
 document.getElementById("grises").addEventListener("click", grises);
 document.getElementById("negativo").addEventListener("click", negativo);
 document.getElementById("binarizacion").addEventListener("click", binarizacion);
 document.getElementById("sepia").addEventListener("click", sepia);
 document.getElementById("brillo").addEventListener("click", brillo);
+document.getElementById("saturacion").addEventListener("click", saturacion);
+// document.getElementById("bordes").addEventListener("click", bordes);
 
 canvas.addEventListener("mousedown", function(){
   pintar = true;
@@ -19,14 +24,26 @@ canvas.addEventListener("mousedown", function(){
 
 canvas.addEventListener("mouseup", function(){
   pintar = false;
+    lastX = -1;
+    lastY = -1;
 });
 
 canvas.addEventListener("mousemove", function(event){
-  var x = event.clientX-5;
-  var y = event.clientY-40;
+  var x = event.layerX - 15;
+  var y = event.layerY;
   if (pintar){
-    ctx.fillStyle = color;
-    ctx.fillRect (x,y,grosor,grosor);
+    ctx.lineCap = "round";
+    ctx.lineWidth = grosor;
+    ctx.strokeStyle = color;
+    ctx.beginPath();
+    ctx.moveTo(x,y);
+    if(lastX != -1 && lastY != -1){
+        ctx.moveTo(lastX, lastY);
+    }
+    ctx.lineTo(x, y);
+	ctx.stroke();
+    lastX = x;
+    lastY = y;
   }
 });
 
@@ -37,33 +54,25 @@ for(i = 0; i < colores.length; i++){
   });
 }
 
-// function GetInputValue () {
-//     var input = document.getElementById ("i_file");
-//     var image = new Image ();
-//     image.src = input.src;
-//     console.log(input);
-//     console.log(image.src);
-//
-//
-//
-//     image.onload = function(){
-//       myDrawImageMethod(this);
-//       var imageData = ctx.getImageData (0,0,image.width,image.height);
-//       ctx.putImageData(imageData,0,0);
-//       };
-//
-// }
+var botonGrosor = document.getElementsByClassName("grosor");
+for(i = 0; i < botonGrosor.length; i++){
+    botonGrosor[i].addEventListener("click", function(){
+        if(this.id == "mas" && grosor < 20){
+            grosor = grosor*2;
+        }else if(this.id == "menos" && grosor > 1){
+            grosor = grosor/2;
+        }
+    })
+}
 
 function myDrawImageMethod(image){
-  ctx.drawImage(image,0,0);
+  ctx.drawImage(image, 0, 0, image.width, image.height);
 }
 
 var nuevo = document.getElementById("limpiar");
 nuevo.addEventListener("click", function(){
-  var ctx = document.getElementById("canvas").getContext("2d");
-  var imageData = ctx.createImageData(500, 500);
-    for (x = 0; x < 500; x++){
-      for (y = 0; y < 500; y++){
+    for (x = 0; x < canvas.width; x++){
+      for (y = 0; y < canvas.heigth; y++){
         setPixel(imageData, x, y, 255, 255, 255, 255);
       }
     }
@@ -78,26 +87,37 @@ function setPixel(imageData, x, y, r, g, b, a){
   imageData.data[index+3] = a;
 }
 
-var guardarImagen = document.getElementById("guardar")
+var guardarImagen = document.getElementById("guardar");
 guardarImagen.addEventListener("click", function(){
-  let canvas = document.getElementById("canvas").getContext("2d");
-  let imagen = canvas.toDataURL("image/png");
-  this.href = imagen;
+  var img = canvas.toDataURL("image/png");
+  this.href = img;
 });
 
 function loadImg(){
-        console.log(1);
-        var image1 = new Image();
-        image1.src = "6.jpg";
-        image1.onload = function(){
-          myDrawImageMethod(this);
-          var imgData = ctx.getImageData(0, 0, this.width, this.height);
-          ctx.putImageData(imgData, 0, 0);
+  var file = document.getElementById('i_file');
+  file.onchange = function(e){
+    var img = new Image();
+    img.src = URL.createObjectURL(e.target.files[0]);
+    img.onload = function(){
+        if (img.width>canvas.width){
+          var porcentaje = (canvas.width/img.width) * 100;
+          img.width = (porcentaje * img.width) / 100;
+          img.height = (porcentaje * img.height) / 100;
         }
-      }
+        if (img.height>canvas.height){
+            var porcentaje = (canvas.height/img.height) * 100;
+            img.width = (porcentaje * img.width) / 100;
+            img.height = (porcentaje * img.height) / 100;
+        }
+      myDrawImageMethod(this);
+      var imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      ctx.putImageData(imgData, 0, 0);
+    }
+  }
+}
 
 function grises(){
-  var img = ctx.getImageData(0, 0, 500, 500);
+  var img = ctx.getImageData(0, 0, canvas.width, canvas.height);
   for(i=0; i < img.data.length; i+=4){
     var color = (img.data[i] + img.data[i+1] + img.data[i+2])/3;
       img.data[i] = color;
@@ -107,27 +127,198 @@ function grises(){
   ctx.putImageData(img, 0, 0);
 }
 function negativo(){
-  var img = ctx.getImageData(0, 0, 500, 500);
-  	for(i=0; i < img.data.length; i+=4){
-  			img.data[i] = 255 - img.data[i];
-  			img.data[i+1] = 255 - img.data[i+1];
-  			img.data[i+2] = 255 - img.data[i+2];
-  	}
-  	ctx.putImageData(img, 0, 0);
+    var img = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    for(i=0; i < img.data.length; i+=4){
+    	img.data[i] = 255 - img.data[i];
+    	img.data[i+1] = 255 - img.data[i+1];
+    	img.data[i+2] = 255 - img.data[i+2];
+    }
+    ctx.putImageData(img, 0, 0);
 }
 function binarizacion(){
+    var img = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    for(i=0; i < img.data.length; i+=4){
+        var promedio = (img.data[i] + img.data[i+1] + img.data[i+2]) / 3
+        if(promedio < 128){
+            img.data[i] = 0;
+        	img.data[i+1] = 0;
+        	img.data[i+2] = 0;
+        }else{
+            img.data[i] = 255;
+        	img.data[i+1] = 255;
+        	img.data[i+2] = 255;
+        }
 
+    }
+    ctx.putImageData(img, 0, 0);
 }
 function sepia(){
-  var img = ctx.getImageData(0, 0, 500, 500);
+  var img = ctx.getImageData(0, 0, canvas.width, canvas.height);
   for(i=0; i < img.data.length; i+=4){
       img.data[i] = (img.data[i]* .393) + (img.data[i+1] *.769 ) + (img.data[i+2] * .189 );
       img.data[i+1] = (img.data[i]* .349) + (img.data[i+1] *.686 ) + (img.data[i+2] * .168);
       img.data[i+2] = (img.data[i]* .272) + (img.data[i+1] *.534 ) + (img.data[i+2] * .131);
     }
-    ctx.putImageData(img, 0, 0);
+  ctx.putImageData(img, 0, 0);
 }
 
 function brillo(){
-
+    var img = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    for(i=0; i < img.data.length; i+=4){
+    	img.data[i] = img.data[i]*1.5;
+    	img.data[i+1] = img.data[i+1]*1.5;
+    	img.data[i+2] = img.data[i+2]*1.5;
+    }
+    ctx.putImageData(img, 0, 0);
 }
+
+function saturacion(){
+    var img = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    for(i=0; i < img.data.length; i+=4){
+      var R = img.data[i] / 255;
+      var G = img.data[i+1] / 255;
+      var B = img.data[i+2] / 255;
+      var H;
+      var S;
+      var L;
+
+      var minimo = Math.min(R,G,B);
+      var maximo = Math.max(R,G,B);
+
+      L = (minimo + maximo) / 2;
+
+      if(minimo == maximo){
+          S = 0;
+      }else{
+          if (L<0.5){
+            S = (maximo - minimo)/(maximo + minimo);
+          } else {
+            S =  (maximo - minimo)/(2.0 - maximo -minimo);
+          }
+      }
+
+      S = S * 2;
+
+      if (R == maximo){
+       H = (G - B)/(maximo-minimo);
+      }else if (G == maximo) {
+       H = 2.0 + (B - R)/(maximo-minimo);
+      }else if (B == maximo){
+       H = 4.0 + (R - G)/(maximo-minimo);
+      }
+
+      H = H * 60;
+
+      if (H < 0){
+        H = H + 360;
+      }
+
+
+      if (S == 0) {
+        R = L * 255;
+        G = L * 255;
+        B = L * 255;
+      }else{
+        var tmp_1;
+        var tmp_2;
+        var tmp_R;
+        var tmp_G;
+        var tmp_B;
+
+        if(L<0.5){
+          tmp_1 = L * (1.0 + S);
+        } else if (L >= 0.5){
+          tmp_1 = (L + S) - (L * S);
+        }
+
+        tmp_2 = (2 * L) - tmp_1;
+
+        H = H / 360;
+
+        tmp_R = H + 0.333;
+        tmp_G = H;
+        tmp_B = H - 0.333;
+
+        if(tmp_R < 0){
+            tmp_R = tmp_R + 1;
+        }else if(tmp_R > 1){
+            tmp_R = tmp_R - 1;
+        }
+        if(tmp_G < 0){
+            tmp_G = tmp_G + 1;
+        }else if(tmp_G > 1){
+            tmp_G = tmp_G - 1;
+        }
+        if(tmp_B < 0){
+            tmp_B = tmp_B + 1;
+        }else if(tmp_B > 1){
+            tmp_B = tmp_B - 1;
+        }
+
+        if((6*tmp_R) < 1){
+          R = tmp_2 + (tmp_1 - tmp_2) * 6 * tmp_2;
+        }else{
+            if((2*tmp_R) < 1){
+              R = tmp_1;
+            }else{
+              if((3*tmp_R) < 2) {
+                  R = tmp_2 + (tmp_1 - tmp_2) * (0.666 - tmp_R) * 6;
+                }else {
+                  R = tmp_2;
+                }
+            }
+        }
+
+        if((6*tmp_G) < 1){
+          R = tmp_2 + (tmp_1 - tmp_2) * 6 * tmp_2;
+        }else{
+            if((2*tmp_G) < 1){
+              R = tmp_1;
+            }else{
+              if((3*tmp_G) < 2) {
+                  R = tmp_2 + (tmp_1 - tmp_2) * (0.666 - tmp_G) * 6;
+                }else {
+                  R = tmp_2;
+                }
+            }
+        }
+
+        if((6*tmp_B) < 1){
+          R = tmp_2 + (tmp_1 - tmp_2) * 6 * tmp_2;
+        }else{
+            if((2 * tmp_B) < 1){
+              R = tmp_1;
+            }else{
+              if((3 * tmp_B) < 2) {
+                  R = tmp_2 + (tmp_1 - tmp_2) * (0.666 - tmp_B) * 6;
+                }else {
+                  R = tmp_2;
+                }
+            }
+        }
+
+        R = Math.round(R * 255);
+        G = Math.round(G * 255);
+        B = Math.round(B * 255);
+      }
+
+	    img.data[i] = R;
+      img.data[i+1] = G;
+      img.data[i+2] = B;
+    }
+    ctx.putImageData(img, 0, 0);
+}
+
+
+// function bordes(){
+//   for (x = 1; x < (canvas.width - 1); x++) {
+//     for (y = 1; y  < (canvas.height - 1); y++) {
+//       var acumulador = 0;
+//       for (var k = x - 1; k < x + 1; k++) {
+//         for (var l = l - 1; l < y + 1; l++){
+//           acumulador += (i[x,y] * m[k,l]);
+//         }
+//       }
+//     }
+//   }
+// }

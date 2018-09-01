@@ -2,40 +2,48 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" href="/css/entrega1.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		<link rel="stylesheet" href="css/entrega1.css">
 		<title>Entrega 1</title>
 	</head>
 
 	<body>
-		<div class="">
-			<table>
-				<td>
+		<div class="container">
+			<div class="row">
+				<div class="col">
 					<button type="button" id="limpiar" class="btn btn-secondary">Nuevo</button>
-					<!-- <input type="file" id="i_file" class="btn btn-secondary"></button> -->
-					<button type="button" id="loadImg" class="btn btn-secondary">Cargar</button>
-					<button type="button" id="guardar" class="btn btn-secondary">Guardar</button>
-					<button type="button" id="#000000" class="btn  btn-secondary">Lapiz</button>
+					<input type="file" id="i_file" class="btn btn-secondary"></button>
+					<a href="#"  id="guardar" download="img.png"><button type="button" class="btn btn-secondary">Guardar</button></a>
+					<button type="button" id="#000000" class="btn color btn-secondary">Lapiz</button>
 					<button type="button" id="#ffffff" class="btn color btn-secondary">Borrar</button>
-				</td>
-				<td>
-					<button type="button" id="#007bff" class="btn color btn-primary"></button>
-					<button type="button" id="#28a745" class="btn color btn-success"></button>
-					<button type="button" id="#dc3545" class="btn color btn-danger"></button>
-					<button type="button" id="#ffc107" class="btn color btn-warning"></button>
-					<button type="button" id="#17a2b8" class="btn color btn-info"></button>
-					<button type="button" id="#343a40" class="btn color btn-dark"></button>
-				</td>
-				<td>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<button type="button" id="#007bff" class="btn color paleta btn-primary"></button>
+					<button type="button" id="#28a745" class="btn color paleta btn-success"></button>
+					<button type="button" id="#dc3545" class="btn color paleta btn-danger"></button>
+					<button type="button" id="#ffc107" class="btn color paleta btn-warning"></button>
+					<button type="button" id="#17a2b8" class="btn color paleta btn-info"></button>
+					<button type="button" id="#343a40" class="btn color paleta btn-dark"></button>
+					<button type="button" id="mas" class="btn btn-outline-primary grosor">+</button>
+					<button type="button" id="menos" class="btn btn-outline-secondary grosor">-</button>
+				</div>
+				<div class="col">
 					<button type="button" id="grises" class="btn btn-secondary">Grises</button>
 					<button type="button" id="negativo" class="btn btn-secondary">Negativo</button>
 					<button type="button" id="binarizacion" class="btn btn-secondary">Binarizacion</button>
 					<button type="button" id="sepia" class="btn btn-secondary">Sepia</button>
 					<button type="button" id="brillo" class="btn btn-secondary">Brillo</button>
-				</td>
-			</table>
-		</div>
-		<div class="">
-			<canvas id="canvas" width="500" height="500" style="border: #000000 solid 1px"/>
+					<button type="button" id="saturacion" class="btn btn-secondary">Saturacion</button>
+					<button type="button" id="Bordes" class="btn btn-secondary">Bordes</button>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<canvas id="canvas" width="1000" height="700" style="border: #000000 solid 1px"/>
+				</div>
+			</div>
 		</div>
 		<script src="js/Entrega1.js">
 		</script>
