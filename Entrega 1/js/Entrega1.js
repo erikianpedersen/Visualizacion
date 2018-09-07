@@ -16,7 +16,7 @@ document.getElementById("binarizacion").addEventListener("click", binarizacion);
 document.getElementById("sepia").addEventListener("click", sepia);
 document.getElementById("brillo").addEventListener("click", brillo);
 document.getElementById("saturacion").addEventListener("click", saturacion);
-// document.getElementById("bordes").addEventListener("click", bordes);
+document.getElementById("bordes").addEventListener("click", bordes);
 
 canvas.addEventListener("mousedown", function(){
   pintar = true;
@@ -140,11 +140,11 @@ function binarizacion(){
     for(i=0; i < img.data.length; i+=4){
         var promedio = (img.data[i] + img.data[i+1] + img.data[i+2]) / 3
         if(promedio < 128){
-            img.data[i] = 0;
+          img.data[i] = 0;
         	img.data[i+1] = 0;
         	img.data[i+2] = 0;
         }else{
-            img.data[i] = 255;
+          img.data[i] = 255;
         	img.data[i+1] = 255;
         	img.data[i+2] = 255;
         }
@@ -310,15 +310,49 @@ function saturacion(){
 }
 
 
-// function bordes(){
-//   for (x = 1; x < (canvas.width - 1); x++) {
-//     for (y = 1; y  < (canvas.height - 1); y++) {
-//       var acumulador = 0;
-//       for (var k = x - 1; k < x + 1; k++) {
-//         for (var l = l - 1; l < y + 1; l++){
-//           acumulador += (i[x,y] * m[k,l]);
-//         }
-//       }
-//     }
-//   }
-// }
+function RellenaNegro(img, i){
+ img.data[i] = black;
+ img.data[i + 1] = black;
+ img.data[i + 2] = black;
+}
+
+function bordes(){
+  grises();
+  img = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  resultado = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  porcentaje = 5;
+  bordeGrosor = 255 * porcentaje/ 100;
+  for(x=0; x<canvas.width; x++){
+    for (y=0; y<canvas.height; y++){
+      var i = (x + y * canvas.width) * 4;
+      var sig = x + 1;
+      var R = img.data[i];
+      var G = img.data[i + 1];
+      var B = img.data[i + 2];
+      grayActual = (R + G + B)/3;
+      if (sig < canvas.width){
+        var iSig = (sig + y * canvas.width) * 4;
+        var R = img.data[iSig];
+        var G = img.data[iSig + 1];
+        var B = img.data[iSig + 2];
+        graySig = (R + G + B)/3;
+        var comparacion = grayActual - graySig;
+        if (comparacion < 0){
+          comparacion = comparacion * -1;
+          if(comparacion > bordeGrosor){
+            resultado.data[iSig] = "ffffff";
+            resultado.data[iSig + 1] = "ffffff";
+            resultado.data[iSig + 2] = "ffffff";
+          }
+        }else{
+          if(comparacion > bordeGrosor){
+            resultado.data[i] = "ffffff";
+            resultado.data[i + 1] = "ffffff";
+            resultado.data[i + 2] = "ffffff";
+          }
+        }
+      }
+      }
+    }
+ctx.putImageData(resultado, 0, 0);
+}
