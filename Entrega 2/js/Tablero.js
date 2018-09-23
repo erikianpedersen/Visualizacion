@@ -9,32 +9,32 @@ function Tablero(){
   this.Matrix = new Array(columnas);
   for (let i = 0; i < this.Matrix.length; i++) {
     this.Matrix[i] = new Array(filas);
-    for (let z = 0; z < this.Matrix[i].length; z++) {
-      this.Matrix[i][z] = 0;
+    for (let j = 0; j < this.Matrix[i].length; j++) {
+      this.Matrix[i][j] = 0;
     }
   }
 }
 
 Tablero.prototype.setColum =  function (col){
     for (let i = 0; i < this.Matrix[col].length; i++) {
-    //pinto una columna
     this.Matrix[col][i] = 1;
   }
 }
 Tablero.prototype.setFil = function (fil) {
   for (let i = 0; i < this.Matrix.length; i++) {
-    //pinto una fila
     this.Matrix[i][fil] = 1;
   }
 };
-Tablero.prototype.cargarTablero = function (x,y,ctx){
-  let ficha = new Ficha (x,y,"#000000");
-  if (this.Matrix[x/100][y/100] == 1) {
-    ficha.setColor("#FF0000");
+// Tablero.prototype.cargarTablero = function (x, y, ctx, casillero, offsX, offsY){
+Tablero.prototype.cargarTablero = function (x, y, ctx, casillero, offsets){
+  // let ficha = new Ficha ((x * casillero) + offsX, (y * casillero) + offsY, "#000000", casillero);
+  let ficha = new Ficha ((x * casillero) + offsets["x"], (y * casillero) + offsets["y"], "#000000", casillero);
+  if (this.Matrix[x][y] == 1) {
+    ficha.setColor("#00FF55");
     ficha.circulodib(ctx);
   }
-  else if (this.Matrix[x/100][y/100] == 2){
-    ficha.setColor("#FFFF00");
+  else if (this.Matrix[x][y] == 2){
+    ficha.setColor("#0088FF");
     ficha.circulodib(ctx);
   }
   else {
@@ -42,20 +42,31 @@ Tablero.prototype.cargarTablero = function (x,y,ctx){
       ficha.circulodib(ctx);
   }
 }
-Tablero.prototype.dibujarGrilla = function(w, h, id) {
-    let canvas = document.getElementById(id);
+Tablero.prototype.dibujarGrilla = function() {
+    let canvas = document.getElementById("canvas");
     let ctx = canvas.getContext('2d');
-    ctx.canvas.width  = w;
-    ctx.canvas.height = h;
-    for (x=0;x<w;x+=100) {
-        for (y=0;y<h;y+=100) {
-            ctx.moveTo(x, 0);
-            ctx.lineTo(x, h);
+    let casillero = Math.floor(((1/2) * canvas.height)/7);
+    let offsets = [];
+    offsets["x"] = (1/4) * canvas.height;
+    offsets["y"] = (1/2) * canvas.width;
+    // let offsY = (1/2) * canvas.height;
+    // let offsX = (1/4) * canvas.width;
+    for (x = 0; x <= columnas; x++){
+        for (y = 0; y <= filas; y++) {
+            // ctx.moveTo((x * casillero) + offsX, offsY);
+            ctx.moveTo((x * casillero) + offsets["x"], offsets["y"]);
+            // ctx.lineTo((x * casillero) + offsX, (filas * casillero) + offsY);
+            ctx.lineTo((x * casillero) + offsets["x"], (filas * casillero) + offsets["y"]);
             ctx.stroke();
-            ctx.moveTo(0, y);
-            ctx.lineTo(w, y);
+            // ctx.moveTo(offsX, (y * casillero) + offsY);
+            ctx.moveTo(offsets["x"], (y * casillero) + offsets["y"]);
+            // ctx.lineTo((columnas * casillero) + offsX, (y * casillero) + offsY);
+            ctx.lineTo((columnas * casillero) + offsets["x"], (y * casillero) + offsets["y"]);
             ctx.stroke();
-            this.cargarTablero(x,y,ctx);
+            if ((x < columnas) && (y < filas)){
+              // this.cargarTablero(x, y, ctx, casillero, offsX, offsY);
+              this.cargarTablero(x, y, ctx, casillero, offsets);
+            }
         }
     }
 };
@@ -77,7 +88,7 @@ Tablero.prototype.getValor = function (x){
     }
   };
 
-Tablero.prototype.verificarVictoria = function(jugador){ //El valor del jugador 1, 2
+Tablero.prototype.verificarVictoria = function(jugador){
   for (x = 0; x < this.Matrix.length; x++) {
     for (i = 0; i < this.Matrix[x].length; i++) {
       if ((this.Matrix[i][x] == jugador) && (i-3 < this.Matrix.length) ){ //
