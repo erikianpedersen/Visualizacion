@@ -1,7 +1,3 @@
-// funciones : - getValor(x,y) return matrix[x][y]
-//             - setValor(x,y) cargarLOgicament el valor
-//             - mostrar el tablero. dibujar grilla /
-               //- matrix en vACIO
 let columnas = 7;
 let filas = 6;
 
@@ -25,9 +21,8 @@ Tablero.prototype.setFil = function (fil) {
     this.Matrix[i][fil] = 1;
   }
 };
-// Tablero.prototype.cargarTablero = function (x, y, ctx, casillero, offsX, offsY){
+
 Tablero.prototype.cargarTablero = function (x, y, ctx, casillero, offsets){
-  // let ficha = new Ficha ((x * casillero) + offsX, (y * casillero) + offsY, "#000000", casillero);
   let ficha = new Ficha ((x * casillero) + offsets["x"], (y * casillero) + offsets["y"], "#000000", casillero);
   if (this.Matrix[x][y] == 1) {
     ficha.setColor("#00FF55");
@@ -47,31 +42,24 @@ Tablero.prototype.dibujarGrilla = function() {
     let ctx = canvas.getContext('2d');
     let casillero = Math.floor(((1/2) * canvas.height)/7);
     let offsets = [];
-    offsets["x"] = (1/4) * canvas.height;
-    offsets["y"] = (1/2) * canvas.width;
-    // let offsY = (1/2) * canvas.height;
-    // let offsX = (1/4) * canvas.width;
+    offsets["x"] = (1/4) * canvas.width;
+    offsets["y"] = (1/2) * canvas.height;
     for (x = 0; x <= columnas; x++){
         for (y = 0; y <= filas; y++) {
-            // ctx.moveTo((x * casillero) + offsX, offsY);
             ctx.moveTo((x * casillero) + offsets["x"], offsets["y"]);
-            // ctx.lineTo((x * casillero) + offsX, (filas * casillero) + offsY);
             ctx.lineTo((x * casillero) + offsets["x"], (filas * casillero) + offsets["y"]);
             ctx.stroke();
-            // ctx.moveTo(offsX, (y * casillero) + offsY);
             ctx.moveTo(offsets["x"], (y * casillero) + offsets["y"]);
-            // ctx.lineTo((columnas * casillero) + offsX, (y * casillero) + offsY);
             ctx.lineTo((columnas * casillero) + offsets["x"], (y * casillero) + offsets["y"]);
             ctx.stroke();
             if ((x < columnas) && (y < filas)){
-              // this.cargarTablero(x, y, ctx, casillero, offsX, offsY);
               this.cargarTablero(x, y, ctx, casillero, offsets);
             }
         }
     }
 };
 
-Tablero.prototype.setValor = function (x,y,valor){
+Tablero.prototype.setValor = function (x, y, valor){
 if ((x < columnas) && (y < filas)) {
     this.Matrix[x][y] = valor;
   }
