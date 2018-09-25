@@ -22,7 +22,6 @@ Ficha.prototype.circulodib = function (ctx){
 Ficha.prototype.circulodib2 = function (ctx,x,y){
     ctx.fillStyle = this.color;
   ctx.beginPath();
-//  M = Math.floor ((Math.sqrt(((70)*(70)) + ((70)*(70))))/2);
   ctx.arc(x,y,this.radio, 0, Math.PI *2);
   ctx.fill();
   ctx.stroke();

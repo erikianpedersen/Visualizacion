@@ -46,7 +46,6 @@ Tablero.prototype.dibujarGrilla = function() {
     let ctx = canvas.getContext('2d');
     let casillero = Math.floor(((1/2) * canvas.height)/7);
 
-    console.log(this.offsetX,this.offsetY);
     for (x = 0; x <= this.columnas; x++){
         for (y = 0; y <= this.filas; y++) {
             ctx.moveTo((x * casillero) + this.offsetX, this.offsetY);

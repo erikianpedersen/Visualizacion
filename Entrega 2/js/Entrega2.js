@@ -15,13 +15,6 @@ let tablero = new Tablero(jugador1, jugador2);
 
 ctx.clearRect(0, 0, canvas.width, canvas.height);
 tablero.dibujarTodo();
-// if (tablero.verificarVictoria(2)){
-//   // console.log("Ganó " + jugador2.nombre);
-// };
-// tablero.dibujarGrilla();
-// if (tablero.verificarVictoria(1)){
-//   // console.log("Ganó " + jugador1.nombre);
-// };
 
 canvas.addEventListener("mousedown", function(event){
     let x = event.layerX - event.currentTarget.offsetLeft;
@@ -42,37 +35,3 @@ canvas.addEventListener('mouseup', function(event){
     tablero.soltarFicha(x,y,ctx);
   }
 });
-
-
-
-
-
-
-
-
-
-
-
-
-//--------------- TEST -------------------
-//-------------- CROSS ------------------
-// canvas.addEventListener("mouseup", mouseup, false);
-//
-// function drawX(x, y) {
-//     ctx.beginPath();
-//     ctx.moveTo(x, y - 60);
-//     ctx.lineTo(x, y + 60);
-//     ctx.stroke();
-//
-//     ctx.moveTo(x + 60, y);
-//     ctx.lineTo(x - 60, y);
-//     ctx.stroke();
-//     ctx.closePath();
-// }
-//
-// function mouseup(e){
-//     let mouseX = e.layerX - canvas.offsetLeft;
-//     let mouseY = e.layerY - canvas.offsetTop;
-//     drawX(mouseX, mouseY);
-//     console.log(mouseX, mouseY)
-// }
