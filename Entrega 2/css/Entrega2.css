@@ -1,0 +1,28 @@
+body{
+  background-image: url('../images/fondo.jpg');
+}
+
+#canvas{
+  box-shadow: 0 10px 15px 15px #333333;
+}
+
+.texto{
+  height: 80px;
+}
+
+#titulo{
+  text-align: center;
+  height: 50px;
+  font-size: 60px;
+  font-weight: bold;
+}
+
+#ganador{
+  height: 50px;
+  font-size: 60px;
+  font-weight: bold;
+  margin-top: 50px;
+  text-align: center;
+  color: #ff1100;
+  text-shadow: 5px 5px 10px #000000;
+}
