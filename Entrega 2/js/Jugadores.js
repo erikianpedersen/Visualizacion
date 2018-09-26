@@ -25,7 +25,7 @@ Jugador.prototype.dibujarFichasJugador = function (){
     } else {
       this.fichas[i] = new Ficha (offsetX + 120, (this.offsets["y"] + (i - 18)*60), this.color, 60, this.numero);
     }
-    this.fichas[i].circulodib(ctx);
+    this.fichas[i].dibujarCirculo(ctx);
   }
 }
 

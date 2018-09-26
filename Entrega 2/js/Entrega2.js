@@ -25,7 +25,7 @@ canvas.addEventListener('mousemove',function(event){
   let x = event.layerX - event.currentTarget.offsetLeft;
   let y = event.layerY - event.currentTarget.offsetTop;
   if(tablero.jugadorActivo.fichaEnJuego != false){
-    tablero.jugadorActivo.fichaEnJuego.mueveRaton(x,y,ctx,tablero);
+    tablero.jugadorActivo.fichaEnJuego.moverCursor(x,y,ctx,tablero);
   }
 });
 canvas.addEventListener('mouseup', function(event){

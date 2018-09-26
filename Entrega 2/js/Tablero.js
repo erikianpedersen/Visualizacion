@@ -30,15 +30,15 @@ Tablero.prototype.cargarTablero = function (x, y, ctx, casillero, offsets){
   let ficha = new Ficha ((x * casillero) + this.offsetX, (y * casillero) + this.offsetY, "#000000", casillero);
   if (this.Matrix[x][y] == 1) {
     ficha.setColor("#00FF55");
-    ficha.circulodib(ctx);
+    ficha.dibujarCirculo(ctx);
   }
   else if (this.Matrix[x][y] == 2){
     ficha.setColor("#0088FF");
-    ficha.circulodib(ctx);
+    ficha.dibujarCirculo(ctx);
   }
   else {
       ficha.setColor("#FFFFFF")
-      ficha.circulodib(ctx);
+      ficha.dibujarCirculo(ctx);
   }
 }
 Tablero.prototype.dibujarGrilla = function() {
@@ -73,7 +73,7 @@ Tablero.prototype.dragFicha = function(x,y){
 }
 
 Tablero.prototype.soltarFicha = function(x,y,ctx){
-  let ficha = this.jugadorActivo.fichaEnJuego.levantaRaton(x,y);
+  let ficha = this.jugadorActivo.fichaEnJuego.levantarCursor(x,y);
   this.obtenerColumna(ficha);
   this.jugadorActivo.fichaEnJuego = false;
 }
