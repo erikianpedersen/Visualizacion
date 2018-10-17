@@ -1,14 +1,20 @@
-function Ficha (paramPosX, paramPosY, paramColor, paramDiametro, numJ){
+function Ficha (paramPosX, paramPosY, paramColor, paramDiametro, numJ, imagenURL){
   this.PosX = paramPosX;
   this.PosY = paramPosY;
   this.color = paramColor;
   this.jugador = numJ;
   this.radio = (paramDiametro / 2);
+  this.imagen = new Image();
+  this.imagen.src = imagenURL;  
   this.clicked = false;
 }
 Ficha.prototype.setColor = function(color){
   this.color = color;
 }
+Ficha.prototype.setImagen = function(img){
+	this.imagen.src = img;
+}
+
 Ficha.prototype.dibujarCirculo = function (ctx){
   ctx.fillStyle = this.color;
   ctx.beginPath();
@@ -17,6 +23,7 @@ Ficha.prototype.dibujarCirculo = function (ctx){
   ctx.fill();
   ctx.stroke();
   ctx.closePath();
+  ctx.drawImage(this.imagen,this.PosX,this.PosY);
 }
 
 Ficha.prototype.dibujarCirculo2 = function (ctx,x,y){
@@ -26,6 +33,10 @@ Ficha.prototype.dibujarCirculo2 = function (ctx,x,y){
   ctx.fill();
   ctx.stroke();
   ctx.closePath();
+  if(this.imagen.src != ""){
+	ctx.drawImage(this.imagen, x-30, y-30);
+  }
+  
 }
 
 Ficha.prototype.isClicked = function(x,y){

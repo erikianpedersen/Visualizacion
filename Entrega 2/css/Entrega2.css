@@ -26,3 +26,7 @@ body{
   color: #ff1100;
   text-shadow: 5px 5px 10px #000000;
 }
+
+#reset{
+	margin-bottom: 5px;
+}

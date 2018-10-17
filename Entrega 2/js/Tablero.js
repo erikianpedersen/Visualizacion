@@ -27,13 +27,15 @@ Tablero.prototype.setFil = function (fil) {
 };
 
 Tablero.prototype.cargarTablero = function (x, y, ctx, casillero, offsets){
-  let ficha = new Ficha ((x * casillero) + this.offsetX, (y * casillero) + this.offsetY, "#000000", casillero);
+  let ficha = new Ficha ((x * casillero) + this.offsetX, (y * casillero) + this.offsetY, "#000000", casillero, "");
   if (this.Matrix[x][y] == 1) {
     ficha.setColor("#00FF55");
+	ficha.setImagen("images/verde.png");
     ficha.dibujarCirculo(ctx);
   }
   else if (this.Matrix[x][y] == 2){
     ficha.setColor("#0088FF");
+	ficha.setImagen("images/azul.png");
     ficha.dibujarCirculo(ctx);
   }
   else {

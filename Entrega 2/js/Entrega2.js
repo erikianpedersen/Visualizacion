@@ -35,3 +35,11 @@ canvas.addEventListener('mouseup', function(event){
     tablero.soltarFicha(x,y,ctx);
   }
 });
+
+document.getElementById("reset").addEventListener("click", function(){
+	jugador1 = new Jugador(21, 1, "Jugador 1",  offsets, "#00FF55");
+	jugador2 = new Jugador(21, 2, "Jugador 2", offsets, "#0088FF");
+	tablero = new Tablero(jugador1, jugador2);	
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	tablero.dibujarTodo();
+});
