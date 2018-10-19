@@ -5,7 +5,7 @@ function Ficha (paramPosX, paramPosY, paramColor, paramDiametro, numJ, imagenURL
   this.jugador = numJ;
   this.radio = (paramDiametro / 2);
   this.imagen = new Image();
-  this.imagen.src = imagenURL;  
+  this.imagen.src = imagenURL;
   this.clicked = false;
 }
 Ficha.prototype.setColor = function(color){
@@ -36,7 +36,7 @@ Ficha.prototype.dibujarCirculo2 = function (ctx,x,y){
   if(this.imagen.src != ""){
 	ctx.drawImage(this.imagen, x-30, y-30);
   }
-  
+
 }
 
 Ficha.prototype.isClicked = function(x,y){

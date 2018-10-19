@@ -145,8 +145,7 @@ Tablero.prototype.setValor = function (x, y, valor){
 
     let hayGanador = this.verificarVictoria();
     if(hayGanador){
-      document.getElementById('ganador').innerHTML = "El ganador es: "+this.jugadorActivo.nombre;
-      this.resetearMatrix();
+      document.getElementById('ganador').innerHTML = "El ganador es: "+this.jugadorActivo.nombre;    
     }
     this.cambiarTurno();
   }else{
