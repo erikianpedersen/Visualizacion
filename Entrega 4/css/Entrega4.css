@@ -1,0 +1,81 @@
+@font-face {
+  font-family: "bankGothic";
+  src: url("fonts/bank gothic medium bt.ttf") format("truetype");
+}
+
+body {
+  background-color: #283162;
+  font-family: "bankGothic";
+  color: #f6fff5;
+}
+
+
+
+.container {
+  background-color: #1c1f3e;
+  width: 1500px;
+  height: 1000px;
+}
+
+.nav-container{
+  background-color: #747685;  
+  font-size: 30px;  
+  padding-top: 5px;
+}
+
+.nav-container ul li {
+  margin: 0 20px;
+}
+
+.nav-container ul li .button{
+  font-size: 30px;
+  border-radius: 25px;
+  height: 45px;
+  margin-top: 18px;
+  margin-left: 50px;
+  padding: 0 40px 0 40px;
+  background-color: #660066;
+  border: none;
+}
+
+.nav-container ul li a {
+  color: #000000;
+  margin-top: 10px;
+  height: 45px;
+}
+
+.nav-link:hover, .active{
+  border-bottom: 3px solid #660066;
+}
+
+.button:hover{
+  box-shadow: 0 0 1em 0.2em #f6fff5;
+}
+
+.game-title{
+   width: 900px;
+   margin: 0 auto;
+   margin-top: 50px;
+   margin-bottom: 10px;
+}
+
+
+.game-container{
+  width: 900px;
+  margin: 0 auto;
+  box-shadow: 0 15px 4em 1em #181727;
+}
+
+#game, #menu {
+  height: 700px;
+  margin: 0 auto;
+  background-color: #2e2e36;
+}
+
+#game{
+  width: 600px;
+}
+
+#menu{
+  width: 320px;  
+}
