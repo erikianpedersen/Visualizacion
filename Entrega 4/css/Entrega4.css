@@ -74,6 +74,7 @@ body {
 
 #game {
   position: absolute;
+  overflow: hidden;
   float:left;
   width: 600px;
   box-shadow: 0 15px 4em 1em #181727;  

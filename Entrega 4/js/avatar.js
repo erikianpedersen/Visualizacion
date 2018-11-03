@@ -14,3 +14,14 @@ Avatar.prototype.setPos = function (x, y) {
     estilo.left = x;
     estilo.bottom = y;
 }
+
+Avatar.prototype.getPos = function () {
+    let pos = document.getElementById("avatar").getBoundingClientRect();
+    let data = {
+        top: pos.top,
+        bottom: pos.bottom,
+        left: pos.left,
+        right: pos.right
+    }
+    return data;
+}

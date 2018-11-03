@@ -23,6 +23,29 @@ Juego.prototype.start_game = function () {
     this.crearEnemigos();
 }
 
+Juego.prototype.detectar_colision = function (enemigo) {
+    if (this.start) {
+        let posAvatar = this.avatar.getPos();
+        let pos = enemigo.getBoundingClientRect();
+
+        let posEnemigo = {
+            top: pos.top,
+            bottom: pos.bottom,
+            left: pos.left,
+            right: pos.right
+        }
+
+        let colision_izquierda = posEnemigo.left < posAvatar.left && posAvatar.left < posEnemigo.right;
+        let colision_derecha = posEnemigo.left < posAvatar.right && posAvatar.right < posEnemigo.right;
+        let colision_arriba = posEnemigo.top < posAvatar.top && posAvatar.top < posEnemigo.bottom;
+        let colision_abajo = posEnemigo.top < posAvatar.bottom && posAvatar.bottom < posEnemigo.bottom;
+
+        if ((colision_izquierda || colision_derecha) && (colision_arriba || colision_abajo)) {
+            console.log("game over");
+        }
+    }
+}
+
 
 Juego.prototype.crearEnemigos = function () {
     setInterval(() => {
@@ -34,6 +57,26 @@ Juego.prototype.crearEnemigos = function () {
 
         enemigo.crearEnemigo(posX, "700px");
         enemigo.setAnimation();
+
+        let juego = this;
+
+        document.getElementById(enemigo.id).addEventListener("animationstart", function () {
+            setInterval(() => {
+                if (!juego.start) {
+                    this.remove();
+                } else {
+                    juego.detectar_colision(this);
+                }
+            }, 20);
+        });
+
+        document.getElementById(enemigo.id).addEventListener("animationend", function () {
+            this.remove();
+            if (juego.start) {
+                juego.score += 100;
+                document.getElementById("score").innerHTML = juego.score;
+            }
+        });
     }, 1000);
 }
 

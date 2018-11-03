@@ -6,7 +6,7 @@ function Enemigo(count) {
 }
 
 Enemigo.prototype.crearEnemigo = function (x, y) {
-    document.getElementById("game").innerHTML += this.tag;
+    $("#game").append(this.tag);
     this.setPos(x, y);
 }
 
