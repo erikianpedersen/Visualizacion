@@ -15,13 +15,18 @@ Avatar.prototype.setPos = function (x, y) {
     estilo.bottom = y;
 }
 
-Avatar.prototype.getPos = function () {
+Avatar.prototype.getPos = function() {
     let pos = document.getElementById("avatar").getBoundingClientRect();
     let data = {
-        top: pos.top,
-        bottom: pos.bottom,
-        left: pos.left,
-        right: pos.right
+         top: pos.top,
+         bottom: pos.bottom,
+         left: pos.left,
+         right: pos.right
     }
     return data;
+}
+
+Avatar.prototype.explotar = function() {
+    let elem = document.getElementById("avatar");
+    elem.classList.add("explotar");
 }

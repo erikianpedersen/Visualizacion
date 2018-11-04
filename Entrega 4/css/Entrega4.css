@@ -128,6 +128,20 @@ body {
   background-repeat: no-repeat;
 }
 
+.explotar {
+  width: 96px;
+  height: 100px;
+  background: url("../imagenes/explosion.png");
+  background-position: 0 0;
+  animation: explosion 2s steps(25) 1;
+}
+
+@keyframes explosion {
+  100% {
+    background-position: -2462px 0px;
+  }
+}
+
 .enemigo {
   position: absolute;
   width: 100px;
