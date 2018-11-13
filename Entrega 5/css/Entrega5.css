@@ -1,0 +1,169 @@
+@font-face {
+  font-family: "bankGothic";
+  src: url("fonts/bank gothic medium bt.ttf") format("truetype");
+}
+
+body {
+  background-color: #283162;
+  font-family: "bankGothic";
+  color: #f6fff5;
+}
+
+.container {
+  background-color: #1c1f3e;
+  width: 1500px;
+  height: 1000px;
+  box-shadow: 0 15px 4em 1em #181727;
+}
+
+.nav-container {
+  background-color: #747685;
+  font-size: 30px;
+  padding-top: 5px;
+}
+
+.nav-container ul li {
+  margin: 0 20px;
+}
+
+.nav-container ul li .button {
+  font-size: 30px;
+  border-radius: 25px;
+  height: 45px;
+  margin-top: 18px;
+  margin-left: 50px;
+  padding: 0 40px 0 40px;
+  background-color: #660066;
+  border: none;
+}
+
+.nav-container ul li a {
+  color: #000000;
+  margin-top: 10px;
+  height: 45px;
+}
+
+.nav-link:hover,
+.active {
+  border-bottom: 3px solid #660066;
+}
+
+.button:hover {
+  box-shadow: 0 0 1em 0.2em #f6fff5;
+}
+
+.game-title {
+  width: 900px;
+  margin: 0 auto;
+  margin-top: 50px;
+  margin-bottom: 10px;
+}
+
+
+.game-container {
+  width: 900px;
+  margin: 0 auto;
+  box-shadow: 0 15px 4em 1em #181727;
+}
+
+#game,
+#menu {
+  height: 700px;
+  background-color: #2e2e36;
+}
+
+#game {
+  position: absolute;
+  overflow: hidden;
+  float:left;
+  width: 600px;
+  box-shadow: 0 15px 4em 1em #181727;  
+  background-image: url("../imagenes/stars.png"), url("../imagenes/fondo1.jpg");
+  background-size: cover, cover;
+  background-repeat: repeat, repeat;
+  background-position: 0px 0px, 0px 0px;
+}
+
+.fondo {
+  animation: background-animation linear 3s infinite;
+}
+
+@keyframes background-animation {
+  from {
+    background-position: 0px 0px, 0px 0px;
+  }
+
+  to {
+    background-position: 0px 1400px, 0px 700px;
+  }
+}
+
+#menu {
+  margin-left: 605px;
+  width: 320px;
+  padding-left: 20px;
+}
+
+.score {
+  margin: 50px 0;
+}
+
+#start {
+  font-size: 50px;
+  margin: 50px 0 50px 45px;
+}
+
+.controls {
+  margin: 50px 0;
+}
+
+.avatar {
+  position: absolute;
+  width: 47px;
+  height: 100px;
+  bottom: 20px;
+  left: 276px;
+  background-image: url("../imagenes/avatar.png");
+  background-size: auto;
+  background-repeat: no-repeat;
+}
+
+.explotar {
+  width: 96px;
+  height: 100px;
+  background: url("../imagenes/explosion.png");
+  background-position: 0 0;
+  animation: explosion 2s steps(25) 1;
+}
+
+@keyframes explosion {
+  100% {
+    background-position: -2462px 0px;
+  }
+}
+
+.enemigo {
+  position: absolute;
+  width: 100px;
+  height: 94px;
+  background-image: url("../imagenes/enemigo.png");
+  background-size: auto;
+  background-repeat: no-repeat;
+  bottom: 700px;
+  left: 376px;
+}
+
+.animacion-enemigo {
+  animation: caer linear;
+  animation-duration: 3s;
+}
+
+@keyframes caer {
+  from {
+    transform: translate();
+  }
+
+  to {
+    transform: translate(0px, 800px);
+  }
+}
