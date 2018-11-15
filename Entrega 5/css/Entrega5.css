@@ -3,16 +3,31 @@
   src: url("fonts/bank gothic medium bt.ttf") format("truetype");
 }
 
+@font-face {
+  font-family: "bitsumis";
+  src: url("fonts/BITSUMIS.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "boomer";
+  src: url("fonts/Boomer Tantrum.otf") format("truetype");
+}
+
 body {
   background-color: #283162;
   font-family: "bankGothic";
   color: #f6fff5;
 }
 
+/* para ocultar el scroll */
+::-webkit-scrollbar {
+    display: none;
+}
+
 .container {
   background-color: #1c1f3e;
   width: 1500px;
-  height: 1000px;
+  height: 1200px;
   box-shadow: 0 15px 4em 1em #181727;
 }
 
@@ -44,7 +59,7 @@ body {
 }
 
 .nav-link:hover,
-.active {
+.nav-item .active {
   border-bottom: 3px solid #660066;
 }
 
@@ -52,118 +67,234 @@ body {
   box-shadow: 0 0 1em 0.2em #f6fff5;
 }
 
-.game-title {
-  width: 900px;
-  margin: 0 auto;
-  margin-top: 50px;
-  margin-bottom: 10px;
+.tendencias-title{
+  margin: 50px 0 10px 130px;
+  font-size: 2em;
 }
 
-
-.game-container {
-  width: 900px;
+#tendencias{
   margin: 0 auto;
   box-shadow: 0 15px 4em 1em #181727;
 }
 
-#game,
-#menu {
-  height: 700px;
+.tendencias{
+  width: 900px;
+}
+
+.carousel-item .portada{
+  float: left;
+  width: 60%;
+}
+
+.carousel-item .informacion{
+  float: left;
+  /* overflow-y: scroll; */
+  padding: 20px 20px;
+  width: 40%;
+  height: 265.672px;
   background-color: #2e2e36;
 }
 
-#game {
-  position: absolute;
-  overflow: hidden;
-  float:left;
+.titulo-game{
+  font-family: "bitsumis";
+  font-size: 2em;
+}
+
+.descrip-game{
+  font-family: arial;
+  font-size: 12px;
+  margin-top: 10px;
+  margin-left: 5%;
+}
+
+h3{
+  float: left;
+  font-family: "boomer";
+}
+
+.estrellas{
+  float: right;
+  width: 150px;
+  height: 26.078px;
+}
+
+.ofertas{
+  width: 900px;
+  height: 300px;
+  margin: 10px auto;
+  padding-left: 15px;
+  box-shadow: 0 15px 4em 1em #181727;
+  background-color: #2e2e36;
+}
+
+.contenedor-ofertas{
+  float: left;
+  margin: 10px 20px;
+  width: 250px;
+  height: 280px;
+  border: 3px solid #4D4D4D!important;
+  border-radius: 10px;
+}
+
+#buscador{
+  margin: 30px 105px auto;
+}
+
+#footer{
+  margin: 90px 360px;
+}
+
+#oferta1{
+  width: 138px;
+  height: 175px;
+  margin: 5px 55px auto;
+}
+
+#oferta2{
+  width: 188px;
+  height: 160px;
+  margin: 5px 30px auto;
+}
+
+#oferta3{
+  width: 143px;
+  height: 144px;
+  margin: 5px 55px auto;
+}
+
+#titulo1{
+  margin: 15px 31px auto;
+  font-size: 15px;
+  float: left;
+  font-family: arial;
+}
+
+#titulo2{
+  margin: 30px 31px auto;
+  font-size: 15px;
+  float: left;
+  font-family: arial;
+}
+
+#titulo3{
+  margin: 46px 31px auto;
+  font-size: 15px;
+  float: left;
+  font-family: arial;
+}
+
+#precio1{
+  margin: 20px 75px auto;
+}
+
+#precio2{
+  margin: 20px 75px auto;
+}
+
+
+#precio3{
+  margin: 20px 75px auto;
+}
+
+#vermas{
+  float: right;
+  font-size: 15px;
+  border-radius: 25px;
+  height: 35px;
+  width: 110px;
+  margin-top: 20px;
+  margin-left: 910px;
+  padding: 0 10px 0 10px;
+  background-color: #660066;
+  border: none;
+}
+
+/* DETALLE JUEGO */
+
+.containerJuego {
+  width: 905px;
+  margin: 10px 100px;
+  box-shadow: 0 15px 4em 1em #181727;
+}
+
+#prev-imagen {
   width: 600px;
-  box-shadow: 0 15px 4em 1em #181727;  
-  background-image: url("../imagenes/stars.png"), url("../imagenes/fondo1.jpg");
-  background-size: cover, cover;
-  background-repeat: repeat, repeat;
-  background-position: 0px 0px, 0px 0px;
+  height: 400px;
+  background-color: #2e2e36;
 }
 
-.fondo {
-  animation: background-animation linear 3s infinite;
+#marco{
+  overflow: hidden;
+  width: 590px;
+  height: 90px;
 }
 
-@keyframes background-animation {
-  from {
-    background-position: 0px 0px, 0px 0px;
-  }
-
-  to {
-    background-position: 0px 1400px, 0px 700px;
-  }
-}
-
-#menu {
-  margin-left: 605px;
-  width: 320px;
-  padding-left: 20px;
-}
-
-.score {
-  margin: 50px 0;
-}
-
-#start {
-  font-size: 50px;
-  margin: 50px 0 50px 45px;
-}
-
-.controls {
-  margin: 50px 0;
-}
-
-.avatar {
-  position: absolute;
-  width: 47px;
+#galeria {
+  width: 600px;
   height: 100px;
-  bottom: 20px;
-  left: 276px;
-  background-image: url("../imagenes/avatar.png");
-  background-size: auto;
-  background-repeat: no-repeat;
+  margin-top: 5px;
+  background-color: #2e2e36;
 }
 
-.explotar {
-  width: 96px;
-  height: 100px;
-  background: url("../imagenes/explosion.png");
-  background-position: 0 0;
-  animation: explosion 2s steps(25) 1;
+#descripcion {
+  width: 300px;
+  height: 505px;
+  margin-left: 5px;
+  background-color: #2e2e36;
 }
 
-@keyframes explosion {
-  100% {
-    background-position: -2462px 0px;
-  }
+#p1{
+  margin-top: 160px;
 }
 
-.enemigo {
-  position: absolute;
-  width: 100px;
-  height: 94px;
-  background-image: url("../imagenes/enemigo.png");
-  background-size: auto;
-  background-repeat: no-repeat;
-  bottom: 700px;
-  left: 376px;
+#estrellasDetalle{
+  float: left;
+  margin-left: 5px;
+  margin-top: 105px;
+  width: 150px;
+  height: 26.078px;
 }
 
-.animacion-enemigo {
-  animation: caer linear;
-  animation-duration: 3s;
+.borderBottom{
+  float: right;
+  border-radius: 25px;
+  height: 45px;
+  width: 120px;
+  margin-top: 95px;
+  margin-right: 5px;
+  padding: 5px 5px 5px 5px;
+  background-color: black;
+  border: none;
 }
 
-@keyframes caer {
-  from {
-    transform: translate();
-  }
+#jugar{
+  float: right;
+  font-size: 15px;
+  color: black;
+  border-radius: 25px;
+  height: 35px;
+  width: 110px;
+  margin: 0 auto;
+  padding: 0 10px 0 10px;
+  background-color: #F5CD41;
+  border: none;
+}
 
-  to {
-    transform: translate(0px, 800px);
-  }
+#prev-imagen{
+  overflow: hidden;
+}
+
+.capturas{
+  float: left;
+  width: 100%;
+}
+
+.capturasMini{
+  float: left;
+  width: 130px;
+  margin: 7px 5px 0 5px;
+}
+
+#prev1{
+  margin-left: 25px;
 }
