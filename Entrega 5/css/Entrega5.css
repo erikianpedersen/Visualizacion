@@ -21,7 +21,7 @@ body {
 
 /* para ocultar el scroll */
 ::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 .container {
@@ -95,6 +95,14 @@ body {
   background-color: #2e2e36;
 }
 
+.carousel-control-prev{
+  left: -12%;
+}
+
+.carousel-control-next{
+  right: -12%;
+}
+
 .titulo-game{
   font-family: "bitsumis";
   font-size: 2em;
@@ -128,13 +136,59 @@ h3{
 }
 
 .contenedor-ofertas{
-  float: left;
-  margin: 10px 20px;
+  margin-left: 5px;
   width: 250px;
-  height: 280px;
+  height: 270px;
   border: 3px solid #4D4D4D!important;
   border-radius: 10px;
 }
+
+
+
+.bb, .bb::before, .bb::after {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.bb {
+  width: 260px;
+  height: 270px;
+  margin: auto;
+  color: #F5CD41;
+}
+
+.bb::before, .bb::after {
+  content: '';
+  margin: -5%;
+  box-shadow: inset 0 0 0 2px;
+  animation: clipMe 8s linear infinite;
+}
+.bb::before {
+  animation-delay: -4s;
+}
+
+@keyframes clipMe {
+  0%, 100% {
+    clip: rect(0px, 320px, 2px, 0px);
+  }
+  25% {
+    clip: rect(0px, 2px, 320px, 0px);
+  }
+  50% {
+    clip: rect(318px, 320px, 320px, 0px);
+  }
+  75% {
+    clip: rect(0px, 320px, 320px, 318px);
+  }
+}
+
+
+
+
+
 
 #buscador{
   margin: 30px 105px auto;
@@ -142,6 +196,10 @@ h3{
 
 #footer{
   margin: 90px 360px;
+}
+
+#footer2{
+  margin: 30px 360px;
 }
 
 #oferta1{
@@ -244,13 +302,13 @@ h3{
 }
 
 #p1{
-  margin-top: 160px;
+  margin-top: 2px;
 }
 
 #estrellasDetalle{
   float: left;
   margin-left: 5px;
-  margin-top: 105px;
+  margin-top: 80px;
   width: 150px;
   height: 26.078px;
 }
@@ -260,7 +318,7 @@ h3{
   border-radius: 25px;
   height: 45px;
   width: 120px;
-  margin-top: 95px;
+  margin-top: 75px;
   margin-right: 5px;
   padding: 5px 5px 5px 5px;
   background-color: black;
@@ -297,4 +355,74 @@ h3{
 
 #prev1{
   margin-left: 25px;
+}
+
+.portadaGame{
+  width: 290px;
+  height: auto;
+  margin: 5px 5px 5px 5px;
+}
+
+#pestañas{
+  background-color: #2e2e36;
+  font-family: arial;
+  margin: 20px 115px;
+  box-shadow: 0 15px 4em 1em #181727;
+}
+
+#contenido-pestañas{
+  overflow-y: scroll;
+  width: 905px;
+  height: 200px;
+}
+
+.list-group-item {
+  display: inline-flex;
+  cursor: pointer;
+}
+
+.nav-tabs .nav-link:hover {
+  color: white  ;
+}
+
+.list-group-item, .nav-tabs .nav-link.active {
+  background-color: #1C1C1C;
+  border-color: #2e2e36;
+}
+
+.nav-tabs .nav-link.active {
+  color: #b7b7b7;
+}
+
+.icon {
+  width: 35px;
+  height: 35px;
+}
+
+.title, .rank {
+  font-size: 15px;
+  margin-top: 10px;
+}
+
+.title {
+  color: #b7b7b7;
+  padding-left: 10px;
+}
+
+.usuario{
+  font-style: italic;
+}
+
+.rank {
+  color: #F5CD41;
+  padding-left: 10px;
+  margin-right: 20px;
+}
+
+.ranking-col, .game-info-col {
+  padding-left: 0;
+}
+
+.light {
+  background-color: #2e2e36;
 }
