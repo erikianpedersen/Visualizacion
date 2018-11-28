@@ -5,12 +5,12 @@
 
 @font-face {
   font-family: "bitsumis";
-  src: url("fonts/BITSUMIS.ttf") format("truetype");
+  src: url("fonts/bitsumis.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "boomer";
-  src: url("fonts/Boomer Tantrum.otf") format("truetype");
+  src: url("fonts/boomer tantrum.otf") format("truetype");
 }
 
 body {
