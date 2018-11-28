@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+  crossorigin="anonymous">
+  <link rel="stylesheet" href="css/Entrega5.css">
+  <title>GameZone</title>
+</head>
+<body>
+  <div class="container">
+    <div class="row nav-container">
+      <div class="col-2">
+        <a href="GameZone.html"><img src="imagenes/logo.png" alt="logo"></a>
+      </div>
+      <div class="col-10">
+        <ul class="nav justify-content-center mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Juegos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Acerca de</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Soporte</a>
+          </li>
+          <li class="nav-item">
+            <button type="button" class="btn btn-primary button">Login</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <img id="buscador" src="imagenes/buscador.png">
+    <div class="row">
+      <h1 class="tendencias-title">TENDENCIAS</h1>
+    </div>
+    <div class="row">
+      <div id="tendencias" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#tendencias" data-slide-to="0" class="active"></li>
+          <li data-target="#tendencias" data-slide-to="1"></li>
+          <li data-target="#tendencias" data-slide-to="2"></li>
+          <li data-target="#tendencias" data-slide-to="3"></li>
+        </ol>
+        <div class="carousel-inner tendencias">
+          <div class="carousel-item active">
+            <a href="#"><img class="portada" src="imagenes/tendencias1.png" alt="juego1"></a>
+            <div class="informacion">
+              <h1 class="titulo-game">COUNTER-STRIKE GLOBAL OFFENSIVE</h1>
+              <p class="descrip-game">Counter-Strike: Global Offensive (CS: GO) ampliará la jugabilidad de acción por equipos que fue pionera en su lanzamiento hace 12 años. CS: GO incluirá nuevos mapas, personajes y armas y ofrecerá versiones actualizadas del contenido clásico de CS (de_dust2, etc.).</p>
+              <h3>$179,99</h3>
+              <img class="estrellas" src="imagenes/estrellasHome.png" alt="estrellas">
+            </div>
+          </div>
+          <div class="carousel-item">
+            <a href="#"><img class="portada" src="imagenes/tendencias2.png" alt="juego2"></a>
+            <div class="informacion">
+              <h1 class="titulo-game">ASSASSIN'S CREED ODYSSEY</h1>
+              <p class="descrip-game">Elige tu destino en Assassin's Creed® Odyssey. Pasa de la marginación a la gloria embarcándote en una odisea para descubrir los secretos de tu pasado y cambiar el destino de la antigua Grecia.</p>
+              <h3>$1199.99</h3>
+              <img class="estrellas" src="imagenes/estrellasHome.png" alt="estrellas">
+            </div>
+          </div>
+          <div class="carousel-item">
+            <a href="#"><img class="portada" src="imagenes/tendencias3.jpg" alt="juego3"></a>
+            <div class="informacion">
+              <h1 class="titulo-game">DOOM</h1>
+              <p class="descrip-game">Ahora incluye los tres paquetes de contenido descargable premium (Unto the Evil-Hell Followed-Bloodfall), mapas, modos y armas, así como todas las actualizaciones de funcionalidades, como el modo Arcade, el modo Foto y la actualización 6.66, la más reciente, que trae más mejoras multijugador.</p>
+              <h3>$360</h3>
+              <img class="estrellas" src="imagenes/estrellasHome.png" alt="estrellas">
+            </div>
+          </div>
+          <div class="carousel-item">
+            <a href="DetalleJuego.html"><img class="portada" id="portada-space" src="imagenes/spaceship.png" alt="juego4"></a>
+            <div class="informacion">
+              <h1 class="titulo-game">SPACESHIP TRAVEL</h1>
+              <p class="descrip-game">Spaceship Travel, consiste en navegar con una aeronave circulando a través de una peligrosa ruta estelar. En el camino te encontrarás con piratas que intentarán robarte tu valiosa mercancía</p>
+              <h3>GRATIS</h3>
+              <img class="estrellas" src="imagenes/estrellasHome.png" alt="estrellas">
+            </div>
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#tendencias" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#tendencias" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </div>
+    <div class="row">
+      <h1 class="tendencias-title">OFERTAS</h1>
+    </div>
+    <div class="row">
+      <div class="ofertas">
+
+        <div class="f1_container"  id="contenedor-ofertas1">
+          <div class="f1_card" class="shadow">
+            <div class="front face">
+              <div class="contenedor-ofertas">
+                  <img id="oferta1" src="imagenes/RL.png">
+                  <h4 id="titulo1">La oferta concluye el 27/12</h4>
+                  <img id="precio1" src="imagenes/precioRL.png">
+              </div>
+            </div>
+            <div class="back face center">
+              <p class="descrip-ofertas">Juego de acción y deportes futurista, en Rocket League® los jugadores se equiparán con vehículos potenciados al máximo que pueden chocar contra pelotas para lograr increíbles goles o paradas épicas en múltiples arenas ricas en detalles. Gracias a un avanzado sistema de física que emula interacciones realistas, Rocket League® se apoya en la masa y la inercia para dar a los jugadores una sensación completa de control intuitivo en esta versión de alto octanaje del fútbol.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="f1_container">
+          <div class="f1_card" class="shadow">
+            <div class="front face">
+              <div class="contenedor-ofertas">
+                <img id="oferta2" src="imagenes/GTA.png">
+                <h4 id="titulo2">La oferta concluye el 31/12</h4>
+                <img id="precio2" src="imagenes/precioGTA.png">
+            </div>
+            </div>
+            <div class="back face center">
+              <p class="descrip-ofertas">Cuando un joven estafador callejero, un ladrón de bancos retirado y un psicópata aterrador se ven involucrados con lo peor y más desquiciado del mundo criminal, del gobierno de los EE. UU. y de la industria del espectáculo, tendrán que llevar a cabo una serie de peligrosos golpes para sobrevivir en una ciudad implacable en la que no pueden confiar en nadie. Y mucho menos los unos en los otros.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="f1_container">
+          <div class="f1_card" class="shadow">
+            <div class="front face">
+              <div class="contenedor-ofertas">
+                  <img id="oferta3" src="imagenes/AC.png">
+                  <h4 id="titulo3">La oferta concluye el 12/12</h4>
+                  <img id="precio3" src="imagenes/precioAC.png">
+            </div>
+            </div>
+            <div class="back face center">
+              <p class="descrip-ofertas">El esplendor y la intriga del antiguo Egipto se desdibujan en una cruenta lucha por el poder. Desvela secretos y mitos ya olvidados en un momento crucial: el origen de la Hermandad de los Assassins</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <button type="button" id="vermas" class="btn btn-primary button">VER MÁS</button>
+    </div>
+    <footer>
+      <img id="footer" src="imagenes/footer.png">
+    </footer>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+  crossorigin="anonymous"></script>
+</body>
+</html>

@@ -5,12 +5,12 @@
 
 @font-face {
   font-family: "bitsumis";
-  src: url("fonts/bitsumis.ttf") format("truetype");
+  src: url("fonts/bitsumis1.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "boomer";
-  src: url("fonts/boomer tantrum.otf") format("truetype");
+  src: url("fonts/Boomer Tantrum.otf") format("truetype");
 }
 
 body {
@@ -18,7 +18,6 @@ body {
   font-family: "bankGothic";
   color: #f6fff5;
 }
-
 /* para ocultar el scroll */
 ::-webkit-scrollbar {
   display: none;
