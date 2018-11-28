@@ -41,13 +41,8 @@ function searchTweets(params) {
         }
         for (var i = 0; i < tweets.length; i++) {
           console.log(tweets[i]);
-          $('.loading').hide();
-             // $('.d-block').css({
-             //   "width": "90",
-             //   "height":"50"
-             // });
-             $('.usuario').html(tweets[i].user);
-             $('.tweet').html(tweets[i].text);
+           $('.usuario').html(tweets[i].user);
+           $('.tweet').html(tweets[i].text);
          }
        },
      );
